@@ -22,34 +22,40 @@ namespace finaltodo.Controllers
             _context = context;
         }
 
-        // GET: api/Todoes
+       
+
         [HttpGet]
-        public IEnumerable<Todo> GetTodo()
+        public async Task<IActionResult> GetNotes([FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned)
         {
-            return _context.Todo.Include(n => n.checklist).Include(n => n.label);
+            var result = await _context.Todo.Include(n => n.checklist).Include(n => n.label)
+                .Where(x => ((title == null || x.heading == title) && (label == null || x.label.Exists(y => y.labelname == label)) && (pinned == null || x.pinned == pinned))).ToListAsync();
+            return Ok(result);
         }
 
-        // GET: api/Todoes/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetTodo([FromRoute] int id)
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteNotes([FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned)
         {
-            if (!ModelState.IsValid)
+            var result = await _context.Todo.Include(n => n.checklist).Include(n => n.label)
+                .Where(x => ((title == null || x.heading == title) && (label == null || x.label.Exists(y => y.labelname == label)) && (pinned == null || x.pinned == pinned))).ToListAsync();
+            foreach (var note in result)
             {
-                return BadRequest(ModelState);
+                _context.Todo.Remove(note);
             }
+            await _context.SaveChangesAsync();
+            //  _context.Todo.Remove(result.ToList());
 
-            var todo = await _context.Todo.FindAsync(id);
 
-            if (todo == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(todo);
+            return Ok();
         }
+
+
+
+
+
 
         // PUT: api/Todoes/5
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public async Task<IActionResult> PutTodo([FromRoute] int id, [FromBody] Todo todo)
         {
             if (!ModelState.IsValid)
@@ -61,11 +67,12 @@ namespace finaltodo.Controllers
             {
                 return BadRequest();
             }
-
+            
+            _context.Todo.Update(todo);
             _context.Entry(todo).State = EntityState.Modified;
-
             try
             {
+                
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
@@ -80,7 +87,7 @@ namespace finaltodo.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(todo);
         }
 
         // POST: api/Todoes
@@ -107,7 +114,7 @@ namespace finaltodo.Controllers
                 return BadRequest(ModelState);
             }
 
-            var todo = await _context.Todo.FindAsync(id);
+            var todo = await _context.Todo.Include(n => n.checklist).Include(n => n.label).SingleOrDefaultAsync(c => c.id == id);
             if (todo == null)
             {
                 return NotFound();
@@ -121,7 +128,7 @@ namespace finaltodo.Controllers
 
         private bool TodoExists(int id)
         {
-            return _context.Todo.Any(e => e.id == id);
+            return _context.Todo.Include(n => n.checklist).Include(n => n.label).Any(e => e.id == id);
         }
     }
 }
