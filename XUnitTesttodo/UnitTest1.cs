@@ -199,6 +199,15 @@ namespace XUnitTesttodo
             Assert.Equal(200,value);
         }
 
+        [Fact]
+        public async void Test_Delete1()
+        {
+            var _controller = GetController();
+            var result = await _controller.DeleteNotes("header1", null, null) as OkResult;
+            // var okResponse = await _controller.PutNote(1, notePut) as OkObjectResult;
+            var value = result.StatusCode;
+            Assert.Equal(200, value);
+        }
 
         [Fact]
         public async void Test_Put()
