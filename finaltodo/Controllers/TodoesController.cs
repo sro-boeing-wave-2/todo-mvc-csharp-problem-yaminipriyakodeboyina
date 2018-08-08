@@ -25,7 +25,7 @@ namespace finaltodo.Controllers
        
 
         [HttpGet]
-        public async Task<IActionResult> GetNotes([FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned)
+        public async Task<IActionResult> GetNotes([FromQuery] int id,[FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned)
         {
             var result = await _context.Todo.Include(n => n.checklist).Include(n => n.label)
                 .Where(x => ((title == null || x.heading == title) && (label == null || x.label.Exists(y => y.labelname == label)) && (pinned == null || x.pinned == pinned))).ToListAsync();
@@ -35,7 +35,16 @@ namespace finaltodo.Controllers
             }
             return Ok(result);
         }
-
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var result = await _context.Todo.Include(n => n.checklist).Include(n => n.label).SingleOrDefaultAsync(x => x.id == id);
+            if (result == null)
+            {
+                return BadRequest();
+            }
+            return Ok(result);
+        }
 
         [HttpDelete("delete")]
         public async Task<IActionResult> DeleteNotes([FromQuery] string title, [FromQuery] string label, [FromQuery] bool? pinned)
