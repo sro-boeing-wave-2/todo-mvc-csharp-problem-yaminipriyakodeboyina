@@ -10,18 +10,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using finaltodo.Models;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Web.Http;
+
 namespace finaltodo
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration,IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
-
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -35,9 +41,16 @@ namespace finaltodo
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddDbContext<finaltodoContext>(options =>
+            if (Environment.IsEnvironment("Testing"))
+            {
+                services.AddDbContext<finaltodoContext>(options =>
+                    options.UseInMemoryDatabase("testDB"));
+            }
+            else
+            {
+                services.AddDbContext<finaltodoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("finaltodoContext")));
+            }
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
@@ -48,14 +61,7 @@ namespace finaltodo
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
 
-            app.UseSwagger();
-
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
-            // specifying the Swagger JSON endpoint.
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
+            
 
             if (env.IsDevelopment())
             {
@@ -66,6 +72,18 @@ namespace finaltodo
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
