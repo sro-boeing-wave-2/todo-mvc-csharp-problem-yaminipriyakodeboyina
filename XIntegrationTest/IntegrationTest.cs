@@ -190,7 +190,7 @@ namespace XUnitTesttodo
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
             var response = await client.PostAsync("api/Todoes", stringContent);
             response.EnsureSuccessStatusCode();
-            var responset = await client.GetAsync("api/todoes?title=header3");
+            var responset = await client.GetAsync("api/todoes?label=label3");
             responset.EnsureSuccessStatusCode();
 
         }
