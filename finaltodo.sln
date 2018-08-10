@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "finaltodo", "finaltodo\fina
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTesttodo", "XUnitTesttodo\XUnitTesttodo.csproj", "{67AEDD62-8C93-4DAE-B6A0-64FB0D38226C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XIntegrationTest", "XIntegrationTest\XIntegrationTest.csproj", "{98A12619-29FB-4783-96A3-35142DEA35F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XIntegrationTest", "XIntegrationTest\XIntegrationTest.csproj", "{98A12619-29FB-4783-96A3-35142DEA35F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

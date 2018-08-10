@@ -19,6 +19,7 @@
     "finaltodo": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "api/Todoes",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

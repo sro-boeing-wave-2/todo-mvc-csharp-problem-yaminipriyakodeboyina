@@ -4001,6 +4001,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Microsoft.AspNet.Mvc": "5.2.6",
+          "Microsoft.AspNetCore.Mvc": "2.1.1",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.1",
           "Microsoft.EntityFrameworkCore.Tools": "2.1.1",
           "Microsoft.NETCore.App": "2.1.0",
@@ -11362,11 +11363,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dotnetassignment\\finaltodo\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\XIntegrationTest\\XIntegrationTest.csproj",
+      "projectUniqueName": "D:\\tododotnet\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\XIntegrationTest\\XIntegrationTest.csproj",
       "projectName": "XIntegrationTest",
-      "projectPath": "D:\\dotnetassignment\\finaltodo\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\XIntegrationTest\\XIntegrationTest.csproj",
+      "projectPath": "D:\\tododotnet\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\XIntegrationTest\\XIntegrationTest.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\dotnetassignment\\finaltodo\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\XIntegrationTest\\obj\\",
+      "outputPath": "D:\\tododotnet\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\XIntegrationTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11385,8 +11386,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\dotnetassignment\\finaltodo\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\finaltodo\\finaltodo.csproj": {
-              "projectPath": "D:\\dotnetassignment\\finaltodo\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\finaltodo\\finaltodo.csproj"
+            "D:\\tododotnet\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\finaltodo\\finaltodo.csproj": {
+              "projectPath": "D:\\tododotnet\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\todo-mvc-csharp-problem-yaminipriyakodeboyina\\finaltodo\\finaltodo.csproj"
             }
           }
         }
@@ -11437,6 +11438,7 @@
             "version": "[15.7.0, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
