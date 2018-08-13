@@ -8,6 +8,6 @@ notifications:
 mono: none
 dotnet: 2.1
 script:
-  #- dotnet restore
+  - dotnet restore
   #- dotnet test XUnitTesttodo
   #- dotnet test XIntegrationTest
