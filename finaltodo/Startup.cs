@@ -49,7 +49,7 @@ namespace finaltodo
             else
             {
                 services.AddDbContext<finaltodoContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("finaltodoContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("finaltodoContext"), dboptions => dboptions.EnableRetryOnFailure(maxRetryCount: 10, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null)));
             }
             services.AddSwaggerGen(c =>
             {
@@ -58,7 +58,7 @@ namespace finaltodo
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,finaltodoContext context)
         {
 
             
@@ -89,12 +89,8 @@ namespace finaltodo
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
+            context.Database.Migrate();
         }
     }
 }

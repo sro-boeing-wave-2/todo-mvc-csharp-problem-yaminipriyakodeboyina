@@ -78,4 +78,3 @@ D:\tododotnet\todo-mvc-csharp-problem-yaminipriyakodeboyina\todo-mvc-csharp-prob
 D:\tododotnet\todo-mvc-csharp-problem-yaminipriyakodeboyina\todo-mvc-csharp-problem-yaminipriyakodeboyina\finaltodo\obj\Debug\netcoreapp2.1\finaltodo.pdb
 D:\tododotnet\todo-mvc-csharp-problem-yaminipriyakodeboyina\todo-mvc-csharp-problem-yaminipriyakodeboyina\finaltodo\obj\Debug\netcoreapp2.1\finaltodo.csproj.CopyComplete
 D:\tododotnet\todo-mvc-csharp-problem-yaminipriyakodeboyina\todo-mvc-csharp-problem-yaminipriyakodeboyina\finaltodo\obj\Debug\netcoreapp2.1\finaltodo.csprojAssemblyReference.cache
-D:\tododotnet\todo-mvc-csharp-problem-yaminipriyakodeboyina\todo-mvc-csharp-problem-yaminipriyakodeboyina\finaltodo\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
